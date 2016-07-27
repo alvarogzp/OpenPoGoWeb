@@ -616,8 +616,8 @@ function sortAndShowBagPokemon(sortOn, user_id) {
       sortedPokemon.sort(function(a, b){
         var idDiff = a.id - b.id;
         if (idDiff == 0) {
-            if (a.cp > b.cp) return -1
-            if(a.cp < b.cp) return 1
+            if (a.iv > b.iv) return -1
+            if(a.iv < b.iv) return 1
             return 0
         }
         return idDiff;
