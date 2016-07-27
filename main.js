@@ -544,7 +544,8 @@ function buildMenu(user_id, menu) {
     sortButtons += '<div class="chip"><a href="javascript:sortAndShowBagPokemon(\'cp\',' + user_id + ')">CP</a></div>';
     sortButtons += '<div class="chip"><a href="javascript:sortAndShowBagPokemon(\'iv\',' + user_id + ')">IV</a></div>';
     sortButtons += '<div class="chip"><a href="javascript:sortAndShowBagPokemon(\'name\',' + user_id + ')">Name</a></div>';
-    sortButtons += '<div class="chip"><a href="javascript:sortAndShowBagPokemon(\'id\',' + user_id + ')">ID</a></div>';
+    sortButtons += '<div class="chip"><a href="javascript:sortAndShowBagPokemon(\'id/cp\',' + user_id + ')">ID/CP</a></div>';
+    sortButtons += '<div class="chip"><a href="javascript:sortAndShowBagPokemon(\'id/iv\',' + user_id + ')">ID/IV</a></div>';
     sortButtons += '<div class="chip"><a href="javascript:sortAndShowBagPokemon(\'time\',' + user_id + ')">Time</a></div>';
     sortButtons += '</div>';
 
@@ -612,7 +613,18 @@ function sortAndShowBagPokemon(sortOn, user_id) {
         return 0;
       });
       break;
-    case 'id':
+    case 'id/cp':
+      sortedPokemon.sort(function(a, b){
+        var idDiff = a.id - b.id;
+        if (idDiff == 0) {
+            if (a.cp > b.cp) return -1
+            if(a.cp < b.cp) return 1
+            return 0
+        }
+        return idDiff;
+      });
+      break;
+    case 'id/iv':
       sortedPokemon.sort(function(a, b){
         var idDiff = a.id - b.id;
         if (idDiff == 0) {
