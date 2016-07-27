@@ -614,7 +614,13 @@ function sortAndShowBagPokemon(sortOn, user_id) {
       break;
     case 'id':
       sortedPokemon.sort(function(a, b){
-        return a.id - b.id
+        var idDiff = a.id - b.id;
+        if (idDiff == 0) {
+            if (a.cp > b.cp) return -1
+            if(a.cp < b.cp) return 1
+            return 0
+        }
+        return idDiff;
       });
       break;
     case 'cp':
